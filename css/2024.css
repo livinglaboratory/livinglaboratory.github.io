@@ -1,0 +1,13 @@
+#logo {
+	max-width: 50px;
+}
+#footer {
+	text-align: center;
+}
+.page-id-6 .wp-block-cover__inner-container h1 {
+	text-shadow: 1px 1px 10px #000000;
+	font-size: 3.5rem;
+}
+.gt_float_switcher img {
+	display: none !important;
+}
