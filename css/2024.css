@@ -11,3 +11,15 @@
 .gt_float_switcher img {
 	display: none !important;
 }
+@media (max-width: 640px) {
+	#header [data-column-set="2"] > div {
+		grid-template-columns: auto;
+	}
+	#header [data-items] {
+		justify-content: center;
+	}
+}
+[data-footer*="type-1"] .ct-footer [data-row*="top"] > div {
+	justify-content: center;
+	--grid-template-columns: none;
+}
