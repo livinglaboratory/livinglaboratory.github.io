@@ -23,3 +23,10 @@
 	justify-content: center;
 	--grid-template-columns: none;
 }
+#goals figure {
+	text-align: center;
+}
+
+#goals img {
+	max-width: 256px;
+}
