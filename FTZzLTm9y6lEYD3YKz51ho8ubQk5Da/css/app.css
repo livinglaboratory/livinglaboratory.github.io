@@ -1,0 +1,9 @@
+.gt_float_switcher img {
+	display: none !important;
+}
+#logo {
+	max-width: 50px;
+}
+img {
+	max-height: 75vh;
+}
