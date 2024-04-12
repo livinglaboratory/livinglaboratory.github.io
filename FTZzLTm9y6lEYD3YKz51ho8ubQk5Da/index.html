@@ -8,13 +8,27 @@
 		<link rel="stylesheet" href="css/foundation.css" />
 		<link rel="stylesheet" href="css/app.css" />
 	</head>
+	<style>
+		body::before {
+			content: "";
+			background-image: url("media/trees.jpg");
+			background-size: cover;
+			position: fixed;
+			top: 0px;
+			right: 0px;
+			bottom: 0px;
+			left: 0px;
+			opacity: 0.25;
+			z-index: -1;
+		}
+	</style>
 	<body>
 		<div class="grid-container">
 			<!--  -->
-			<div class="grid-x grid-padding-x grid-padding-y align-middle">
+			<header class="grid-x grid-padding-x grid-padding-y align-middle">
 				<div class="large-4 medium-4 small-4 cell">
 					<div>
-						<a href="/" rel="home" class="h4"><img src="media/logo.png" alt="" id="logo" /> Living Laboratory </a>
+						<a href="/" rel="home" class="h4"><img src="media/logo.png" alt="" id="logo" /> LivingLaboratory.org</a>
 					</div>
 				</div>
 				<div class="large-8 medium-8 small-8 cell">
@@ -23,17 +37,16 @@
 							<li><a href="species.html">Species</a></li>
 							<li>
 								<a href="reports.html">Reports</a>
-								<ul class="menu">
-									<li><a href="possible-approaches.html">Trees</a></li>
-									<li><a href="intertidal-zones.html">Intertidal</a></li>
+								<ul class="menu align-right">
+									<li><a href="possible-approaches.html">Creating a Living Laboratory</a></li>
+									<li><a href="intertidal-zones.html">Intertidal Zones</a></li>
 								</ul>
 							</li>
-							<li><a href="#contact">Contact</a></li>
+							<li><a href="contact.html">Contact</a></li>
 						</ul>
-						<!-- (https://www.naturetrust.nb.ca/en/home or https://www.conservationcouncil.ca/) -->
 					</div>
 				</div>
-			</div>
+			</header>
 			<!--  -->
 			<div class="grid-x grid-padding-x grid-padding-y align-center text-center">
 				<div class="large-10 cell">
@@ -55,7 +68,7 @@
 						<h2>Mission</h2>
 						<p class="lead">At Living Laboratory, our mission is to illuminate the profound significance of the Bay of Fundy by examining its ecosystem through a lens that encompasses the diverse array of species inhabiting and interacting within this vital marine environment. We are dedicated to fostering a deep understanding of the Bay's ecological complexities, advocating for all species preservation.</p>
 						<p>In the Anthropocene era, our growing impact on the environment raises crucial questions about the fate of countless species. As we navigate this era of human influence, it's imperative to understand how these species are responding and adapting to the challenges posed by our actions. This is the focal point of our mission: to identify, study, and provide assistance to the diverse array of species affected by our presence.</p>
-						<p>Our commitment begins with the protection and utilization of our property in Blacks Harbour, a rural community of Eastern Charlotte, New Brunswick, Canada. The pristine 100+ acre peninsula boasts 2 1/2 miles of ocean-front shoreline, extending into the Bay of Fundy. This expansive site serves as the canvas for our initial study—a pivotal step towards establishing a "living laboratory".</p>
+						<p>Our commitment begins with the protection and utilization of our property in Blacks Harbour, a rural community of Eastern Charlotte, New Brunswick, Canada. The pristine 100+ acre peninsula boasts 2 1/2 miles of ocean-front shoreline, extending into the Bay of Fundy. This expansive site serves as the canvas for our initial study—a pivotal step towards establishing a Living Laboratory.</p>
 						<p>Through rigorous investigation and collaboration, we aim to unravel the intricate dynamics of species adaptation within this unique ecosystem. By leveraging our resources and expertise, we aspire to not only uncover the challenges faced by these species but also to devise effective strategies for their conservation and resilience. Together, we strive to make a meaningful difference in the lives of all beings that call this ecosystem home.</p>
 					</div>
 				</div>
@@ -202,23 +215,25 @@
 				</div>
 			</div> -->
 			<!--  -->
-			<div class="grid-x grid-padding-x grid-padding-y align-middle" id="contact">
+			<footer class="grid-x grid-padding-x grid-padding-y align-middle" id="contact">
 				<div class="large-4 medium-4 small-4 cell">
 					<div>
-						<a href="/" rel="home" class="h4"><img src="media/logo.png" alt="" id="logo" /> Living Laboratory </a>
+						<a href="/" rel="home" class="h4"><img src="media/logo.png" alt="" id="logo" /> LivingLaboratory.org</a>
 					</div>
 				</div>
 				<div class="large-8 medium-8 small-8 cell">
 					<div>
 						<ul class="menu align-right">
-							<li><a href="mailto:eorae@yahoo.com?subject=livinglaboratory.org">eorae@yahoo.com</a></li>
-							<li><a href="tel:+15086659192">1-508-665-9192</a></li>
-							<li><a href="legal.html">Legal Stuff</a></li>
+							<ul class="menu align-right">
+								<li><a href="species.html">Species</a></li>
+								<li><a href="reports.html">Reports</a></li>
+								<li><a href="contact.html">Contact</a></li>
+								<li><a href="legal.html">Legal Stuff</a></li>
+							</ul>
 						</ul>
-						<!-- (https://www.naturetrust.nb.ca/en/home or https://www.conservationcouncil.ca/) -->
 					</div>
 				</div>
-			</div>
+			</footer>
 			<!--  -->
 		</div>
 

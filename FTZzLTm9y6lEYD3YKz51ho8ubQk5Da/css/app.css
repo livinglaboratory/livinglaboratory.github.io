@@ -7,3 +7,11 @@
 img {
 	max-height: 75vh;
 }
+figure.video,
+video {
+	max-width: 100%;
+}
+header,
+footer {
+	padding: 1rem 0;
+}

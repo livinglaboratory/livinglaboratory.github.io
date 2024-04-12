@@ -10,23 +10,30 @@
 	</head>
 	<body>
 		<div class="grid-container">
+
 			<!--  -->
-			<div class="grid-x grid-padding-x grid-padding-y align-middle">
+			<header class="grid-x grid-padding-x grid-padding-y align-middle">
 				<div class="large-4 medium-4 small-4 cell">
 					<div>
-						<a href="/" rel="home" class="h4"><img src="media/logo.png" alt="" id="logo" /> Living Laboratory </a>
+						<a href="/" rel="home" class="h4"><img src="media/logo.png" alt="" id="logo" /> LivingLaboratory.org</a>
 					</div>
 				</div>
 				<div class="large-8 medium-8 small-8 cell">
 					<div>
-						<ul class="menu align-right">
+						<ul class="dropdown menu align-right" data-dropdown-menu>
 							<li><a href="species.html">Species</a></li>
-							<li><a href="reports.html">reports</a></li>
-							<li><a href="#contact">Contact</a></li>
+							<li>
+								<a href="reports.html">Reports</a>
+								<ul class="menu align-right">
+									<li><a href="possible-approaches.html">Creating a Living Laboratory</a></li>
+									<li><a href="intertidal-zones.html">Intertidal Zones</a></li>
+								</ul>
+							</li>
+							<li><a href="contact.html">Contact</a></li>
 						</ul>
 					</div>
 				</div>
-			</div>
+			</header>
 			<!--  -->
 			<div class="grid-x grid-padding-x">
 				<div class="large-12 cell">
@@ -41,7 +48,7 @@
 						<a href="possible-approaches.html"><div class="card">
 							<img src="media/image.gif" />
 							<div class="card-section">
-								<h4>Creating a “Living Laboratory” for Deadmans Head Forest During the Age of Climate Change</h4>
+								<h4>Creating a Living Laboratory for Deadmans Head Forest During the Age of Climate Change</h4>
 								<p>Deadmans Head Forest in Blacks Harbor, Southwestern New Brunswick, is a New England Acadian Forest nestled on rolling terrain by the Bay of Fundy. With a blend of coniferous and deciduous trees, it supports diverse wildlife. Its eastern side boasts cliff beaches, while sandy beaches line the western edge.</p>
 							</div></a>
 						</div>
@@ -56,7 +63,7 @@
 						</div>
 					</div>
 					<div class="cell">
-						<a href="#contact"><div class="card">
+						<a href="contact.html"><div class="card">
 							<img src="media/image.gif" />
 							<div class="card-section">
 								<h4>Start a Project with us!</h4>
@@ -66,24 +73,27 @@
 					</div>
 				</div>
 			</div>
+
 			<!--  -->
-			<div class="grid-x grid-padding-x grid-padding-y align-middle" id="contact">
+			<footer class="grid-x grid-padding-x grid-padding-y align-middle" id="contact">
 				<div class="large-4 medium-4 small-4 cell">
 					<div>
-						<a href="/" rel="home" class="h4"><img src="media/logo.png" alt="" id="logo" /> Living Laboratory </a>
+						<a href="/" rel="home" class="h4"><img src="media/logo.png" alt="" id="logo" /> LivingLaboratory.org</a>
 					</div>
 				</div>
 				<div class="large-8 medium-8 small-8 cell">
 					<div>
 						<ul class="menu align-right">
-							<li><a href="mailto:eorae@yahoo.com?subject=livinglaboratory.org">eorae@yahoo.com</a></li>
-							<li><a href="tel:+15086659192">1-508-665-9192</a></li>
-							<li><a href="legal.html">Legal Stuff</a></li>
+							<ul class="menu align-right">
+								<li><a href="species.html">Species</a></li>
+								<li><a href="reports.html">Reports</a></li>
+								<li><a href="contact.html">Contact</a></li>
+								<li><a href="legal.html">Legal Stuff</a></li>
+							</ul>
 						</ul>
-						<!-- (https://www.naturetrust.nb.ca/en/home or https://www.conservationcouncil.ca/) -->
 					</div>
 				</div>
-			</div>
+			</footer>
 			<!--  -->
 		</div>
 
