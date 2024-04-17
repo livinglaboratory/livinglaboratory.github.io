@@ -15,7 +15,7 @@
 			<header class="grid-x grid-padding-x grid-padding-y align-middle">
 				<div class="large-4 medium-4 small-4 cell">
 					<div>
-						<a href="/" rel="home" class="h4"><img src="media/logo.png" alt="" id="logo" /> LivingLaboratory.org</a>
+						<a href="/" rel="home" class="h4"><img src="media/logo.png" alt="" class="logo" /> LivingLaboratory.org</a>
 					</div>
 				</div>
 				<div class="large-8 medium-8 small-8 cell">
@@ -23,7 +23,7 @@
 						<ul class="dropdown menu align-right" data-dropdown-menu>
 							<li><a href="species.html">Species</a></li>
 							<li>
-								<a href="reports.html">Reports</a>
+								<a href="contact.html">Reports</a>
 								<ul class="menu align-right">
 									<li><a href="possible-approaches.html">Creating a Living Laboratory</a></li>
 									<li><a href="intertidal-zones.html">Intertidal Zones</a></li>
@@ -96,23 +96,147 @@
 		<option>Native</option>
 		<option>Introduced</option>
 	</select>
+<!--
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	https://api.inaturalist.org/v1/observations?project_id=152030&per_page=3&order=desc&order_by=created_at -->
 <p><img src="_dev/species.jpg" style="max-height:none; width: 100%;" /></p>
+<script type="importmap">
+	{
+	  "imports": {
+		"vue": "https://unpkg.com/vue@3/dist/vue.esm-browser.js"
+	  }
+	}
+  </script>
+<!--
 
 
+
+
+
+
+
+
+
+This example fetches latest Vue.js commits data from GitHub’s API and displays them as a list.
+You can switch between the two branches.
+-->
+
+<script type="module">
+	import { createApp } from 'vue'
+
+	const API_URL = `https://api.inaturalist.org/v1/observations?project_id=152030&per_page=3&order=desc&order_by=created_at`
+
+	const { data, error } = useFetch(() => `${API_URL}`)
+	console.log(data);
+
+	createApp({
+	  data: () => ({
+		branches: ['main', 'v2-compat'],
+		currentBranch: 'main',
+		commits: null
+	  }),
+
+	  created() {
+		// fetch on init
+		this.fetchData()
+	  },
+
+	  watch: {
+		// re-fetch whenever currentBranch changes
+		currentBranch: 'fetchData'
+	  },
+
+	  methods: {
+		async fetchData() {
+		  const url = `${API_URL}`
+		  this.commits = await (await fetch(url)).json()
+		  console.log(this.commits);
+		},
+		// truncate(v) {
+		//   const newline = v.indexOf('\n')
+		//   return newline > 0 ? v.slice(0, newline) : v
+		// },
+		// formatDate(v) {
+		//   return v.replace(/T|Z/g, ' ')
+		// }
+	  }
+	}).mount('#app')
+	</script>
+
+	<div id="app">
+	  <h1>Latest Vue Core Commits</h1>
+	  <template v-for="branch in branches">
+		<input type="radio"
+		  :id="branch"
+		  :value="branch"
+		  name="branch"
+		  v-model="currentBranch">
+		<label :for="branch">{{ branch }}</label>
+	  </template>
+	  <p>vuejs/vue@{{ currentBranch }}</p>
+	  <ul>
+		<li v-for="{ html_url, sha, author, commit } in commits">
+		  <a :href="html_url" target="_blank" class="commit">{{ sha.slice(0, 7) }}</a>
+		  - <span class="message">{{ truncate(commit.message) }}</span><br>
+		  by <span class="author">
+			<a :href="author.html_url" target="_blank">{{ commit.author.name }}</a>
+		  </span>
+		  at <span class="date">{{ formatDate(commit.author.date) }}</span>
+		</li>
+	  </ul>
+	</div>
+	<!--
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	 -->
 			<!--  -->
 			<footer class="grid-x grid-padding-x grid-padding-y align-middle" id="contact">
 				<div class="large-4 medium-4 small-4 cell">
 					<div>
-						<a href="/" rel="home" class="h4"><img src="media/logo.png" alt="" id="logo" /> LivingLaboratory.org</a>
+						<a href="/" rel="home" class="h4"><img src="media/logo.png" alt="" class="logo" /> LivingLaboratory.org</a>
 					</div>
 				</div>
 				<div class="large-8 medium-8 small-8 cell">
 					<div>
 						<ul class="menu align-right">
 							<ul class="menu align-right">
-								<li><a href="species.html">Species</a></li>
-								<li><a href="reports.html">Reports</a></li>
-								<li><a href="contact.html">Contact</a></li>
+							<li><a href="species.html">Species</a></li>
+							<li>
+								<a href="contact.html">Reports</a>
+								<ul class="menu align-right">
+									<li><a href="possible-approaches.html">Creating a Living Laboratory</a></li>
+									<li><a href="intertidal-zones.html">Intertidal Zones</a></li>
+								</ul>
+							</li>
+							<li><a href="contact.html">Contact</a></li>
 								<li><a href="legal.html">Legal Stuff</a></li>
 							</ul>
 						</ul>

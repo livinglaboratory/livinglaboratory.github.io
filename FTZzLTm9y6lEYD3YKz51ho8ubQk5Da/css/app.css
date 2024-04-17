@@ -1,7 +1,7 @@
 .gt_float_switcher img {
 	display: none !important;
 }
-#logo {
+img.logo {
 	max-width: 50px;
 }
 img {
@@ -14,4 +14,8 @@ video {
 header,
 footer {
 	padding: 1rem 0;
+}
+code {
+	font-size: 2.5rem;
+	background-color: greenyellow;
 }
