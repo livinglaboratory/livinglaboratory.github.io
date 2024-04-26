@@ -10,7 +10,6 @@
 	</head>
 	<body>
 		<div class="grid-container">
-
 			<!--  -->
 			<header class="grid-x grid-padding-x grid-padding-y align-middle">
 				<div class="large-4 medium-4 small-4 cell">
@@ -23,7 +22,7 @@
 						<ul class="dropdown menu align-right" data-dropdown-menu>
 							<li><a href="species.html">Species</a></li>
 							<li>
-								<a href="contact.html">Reports</a>
+								<a href="reports.html">Reports</a>
 								<ul class="menu align-right">
 									<li><a href="possible-approaches.html">Creating a Living Laboratory</a></li>
 									<li><a href="intertidal-zones.html">Intertidal Zones</a></li>
@@ -45,178 +44,10 @@
 				<div class="large-12 medium-12 small-12 cell">
 					<div>
 						<p>One of our top priorities is to identify and detail current species on and around the designated observation sites. We aim to accomplish this goal using iNaturalist, a social network of naturalists, citizen scientists, and biologists built on the concept of mapping and sharing observations of biodiversity across the globe.</p>
-						<p><a  class="button large" href="https://www.inaturalist.org/projects/deadmans-head-forest">Join the Project</a>
-						<a  class="button large" href="https://www.inaturalist.org/projects/deadmans-head-forest?tab=species">All Species</a></p>
-					</div></div></div>
-			<!--  -->
-			<div class="grid-x grid-padding-x">
-				<div class="large-12 medium-12 small-12 cell">
-					<div>
-						<h2 class="wp-block-heading">Recent Observations</h2>
-<select>
-	<option>English Name a/z</option>
-	<option>Latin Name a/z</option>
-	<option>Date oldest/newest</option>
-</select>
-<select id="dino-select">
-	<option>All Species</option>
-	<optgroup label="Kingdom">
-	  <option>abcd...</option>
-	  <option>abcd...</option>
-	  <option>abcd...</option>
-	</optgroup>
-	<optgroup label="Family">
-		<option>abcd...</option>
-		<option>abcd...</option>
-		<option>abcd...</option>
-	</optgroup>
-  </select>
-  <select id="dino-select">
-	  <option>All Locations</option>
-	  <optgroup label="Deadmans Head">
-		<option>abcd...</option>
-		<option>abcd...</option>
-		<option>abcd...</option>
-	  </optgroup>
-	  <optgroup label="Second Site">
-		  <option>abcd...</option>
-		  <option>abcd...</option>
-		  <option>abcd...</option>
-	  </optgroup>
-	</select>
-	<select>
-		<option>All Threat Levels</option>
-		<option>Endangered</option>
-		<option>Threatened</option>
-		<option>Vulneratble</option>
-		<option>Extinct</option>
-	</select>
-	<select>
-		<option>All Establishment Means</option>
-		<option>Native</option>
-		<option>Introduced</option>
-	</select>
-<!--
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	https://api.inaturalist.org/v1/observations?project_id=152030&per_page=3&order=desc&order_by=created_at -->
-<p><img src="_dev/species.jpg" style="max-height:none; width: 100%;" /></p>
-<script type="importmap">
-	{
-	  "imports": {
-		"vue": "https://unpkg.com/vue@3/dist/vue.esm-browser.js"
-	  }
-	}
-  </script>
-<!--
-
-
-
-
-
-
-
-
-
-This example fetches latest Vue.js commits data from GitHub’s API and displays them as a list.
-You can switch between the two branches.
--->
-
-<script type="module">
-	import { createApp } from 'vue'
-
-	const API_URL = `https://api.inaturalist.org/v1/observations?project_id=152030&per_page=3&order=desc&order_by=created_at`
-
-	const { data, error } = useFetch(() => `${API_URL}`)
-	console.log(data);
-
-	createApp({
-	  data: () => ({
-		branches: ['main', 'v2-compat'],
-		currentBranch: 'main',
-		commits: null
-	  }),
-
-	  created() {
-		// fetch on init
-		this.fetchData()
-	  },
-
-	  watch: {
-		// re-fetch whenever currentBranch changes
-		currentBranch: 'fetchData'
-	  },
-
-	  methods: {
-		async fetchData() {
-		  const url = `${API_URL}`
-		  this.commits = await (await fetch(url)).json()
-		  console.log(this.commits);
-		},
-		// truncate(v) {
-		//   const newline = v.indexOf('\n')
-		//   return newline > 0 ? v.slice(0, newline) : v
-		// },
-		// formatDate(v) {
-		//   return v.replace(/T|Z/g, ' ')
-		// }
-	  }
-	}).mount('#app')
-	</script>
-
-	<div id="app">
-	  <h1>Latest Vue Core Commits</h1>
-	  <template v-for="branch in branches">
-		<input type="radio"
-		  :id="branch"
-		  :value="branch"
-		  name="branch"
-		  v-model="currentBranch">
-		<label :for="branch">{{ branch }}</label>
-	  </template>
-	  <p>vuejs/vue@{{ currentBranch }}</p>
-	  <ul>
-		<li v-for="{ html_url, sha, author, commit } in commits">
-		  <a :href="html_url" target="_blank" class="commit">{{ sha.slice(0, 7) }}</a>
-		  - <span class="message">{{ truncate(commit.message) }}</span><br>
-		  by <span class="author">
-			<a :href="author.html_url" target="_blank">{{ commit.author.name }}</a>
-		  </span>
-		  at <span class="date">{{ formatDate(commit.author.date) }}</span>
-		</li>
-	  </ul>
-	</div>
-	<!--
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	 -->
+						<p><a class="button large" href="https://www.inaturalist.org/projects/deadmans-head-forest">Join the Project</a> <a class="button large" href="https://www.inaturalist.org/projects/deadmans-head-forest?tab=species">All Species</a></p>
+					</div>
+				</div>
+			</div>
 			<!--  -->
 			<footer class="grid-x grid-padding-x grid-padding-y align-middle" id="contact">
 				<div class="large-4 medium-4 small-4 cell">
@@ -228,15 +59,9 @@ You can switch between the two branches.
 					<div>
 						<ul class="menu align-right">
 							<ul class="menu align-right">
-							<li><a href="species.html">Species</a></li>
-							<li>
-								<a href="contact.html">Reports</a>
-								<ul class="menu align-right">
-									<li><a href="possible-approaches.html">Creating a Living Laboratory</a></li>
-									<li><a href="intertidal-zones.html">Intertidal Zones</a></li>
-								</ul>
-							</li>
-							<li><a href="contact.html">Contact</a></li>
+								<li><a href="species.html">Species</a></li>
+								<li><a href="reports.html">Reports</a></li>
+								<li><a href="contact.html">Contact</a></li>
 								<li><a href="legal.html">Legal Stuff</a></li>
 							</ul>
 						</ul>
