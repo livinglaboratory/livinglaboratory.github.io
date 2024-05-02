@@ -47,61 +47,6 @@
 					</div>
 				</div>
 			</div>
-			<!--  -->
-			<div class="grid-x grid-margin-x">
-				<div class="cell auto">
-					<select>
-						<option>English Name a/z</option>
-						<option>Latin Name a/z</option>
-						<option>Date oldest/newest</option>
-					</select>
-				</div>
-				<div class="cell auto">
-					<select id="dino-select">
-						<option>All Species</option>
-						<optgroup label="Kingdom">
-							<option>abcd...</option>
-							<option>abcd...</option>
-							<option>abcd...</option>
-						</optgroup>
-						<optgroup label="Family">
-							<option>abcd...</option>
-							<option>abcd...</option>
-							<option>abcd...</option>
-						</optgroup>
-					</select>
-				</div>
-				<div class="cell auto">
-					<select id="dino-select">
-						<option>All Locations</option>
-						<optgroup label="Deadmans Head">
-							<option>abcd...</option>
-							<option>abcd...</option>
-							<option>abcd...</option>
-						</optgroup>
-						<optgroup label="Another Site">
-							<option>abcd...</option>
-							<option>abcd...</option>
-							<option>abcd...</option>
-						</optgroup>
-					</select>
-				</div>
-				<div class="cell auto">
-					<select>
-						<option>All Threat Levels</option>
-						<option>Endangered</option>
-						<option>Threatened</option>
-						<option>Vulneratble</option>
-						<option>Extinct</option>
-					</select>
-					<!-- <select>
-								<option>All Establishment Means</option>
-								<option>Native</option>
-								<option>Introduced</option>
-							</select> -->
-				</div>
-			</div>
-			<!--  -->
 
 			<!--
 
@@ -117,8 +62,7 @@
 
 
 
-
-	https://api.inaturalist.org/v1/observations?project_id=152030&per_page=3&order=desc&order_by=created_at -->
+ -->
 			<!-- <p><img src="_dev/species.jpg" style="max-height: none; width: 100%" /></p> -->
 			<script type="importmap">
 				{
@@ -132,72 +76,180 @@
 
 
 
+for species/family...
+https://api.inaturalist.org/v1/observations/species_counts?project_id=152030&per_page=2
 
 
 
-
+https://api.inaturalist.org/v1/docs/#!/Observations/get_observations
 
 This example fetches latest Vue.js commits data from GitHub’s API and displays them as a list.
 You can switch between the two branches.
 -->
 
 			<script type="module">
+				// import inatjson from "https://api.inaturalist.org/v1/observations?project_id=152030&per_page=3&order=desc&order_by=created_at" assert { type: "json" };
+				// console.log(inatjson);
+
 				import { createApp } from "vue";
-
-				const API_URL = `https://api.inaturalist.org/v1/observations?project_id=152030&per_page=3&order=desc&order_by=created_at`;
-
-				const { data, error } = useFetch(() => `${API_URL}`);
-				console.log(data);
 
 				createApp({
 					data: () => ({
-						branches: ["main", "v2-compat"],
-						currentBranch: "main",
-						commits: null,
+						// branches: ["main", "v2-compat"],
+						// currentBranch: "main",
+						page: null,
+						per_page: null,
+						results: null,
+						total_results: null,
+						order_by: "species_guess",
+						order: "desc",
+						answer: null,
+						loading: false,
 					}),
-
-					created() {
-						// fetch on init
-						this.fetchData();
-					},
-
 					watch: {
-						// re-fetch whenever currentBranch changes
-						currentBranch: "fetchData",
-					},
-
-					methods: {
-						async fetchData() {
-							const url = `${API_URL}`;
-							this.commits = await (await fetch(url)).json();
-							console.log(this.commits);
+						order_by: {
+							handler(newValue) {
+								this.fetch_inaturalist_json();
+							},
+							immediate: true,
 						},
-						// truncate(v) {
-						//   const newline = v.indexOf('\n')
-						//   return newline > 0 ? v.slice(0, newline) : v
-						// },
-						// formatDate(v) {
-						//   return v.replace(/T|Z/g, ' ')
-						// }
+						order: {
+							handler(newValue) {
+								this.fetch_inaturalist_json();
+							},
+							immediate: true,
+						},
 					},
+					// computed: {
+					// 	sortedJson: function () {
+					// 		return this.results.sort((t1, t2) => (t1.id < t2.id ? -1 : 1));
+					// 	},
+					// },
+					methods: {
+						async fetch_inaturalist_json() {
+							this.loading = true;
+							this.answer = "Thinking...";
+							try {
+								// threatened=true|false|null
+								// introduced=true|false|null
+								// const res = await fetch("https://api.inaturalist.org/v1/observations?project_id=152030&per_page=3&order=" + this.order + "&order_by=" + this.order_by + "");
+								const res = await fetch("https://api.inaturalist.org/v1/observations?project_id=152030&per_page=3");
+								const frominat = await res.json();
+								// const jsonObjectArray = await JSON.parse(frominat);
+								console.log(frominat);
+								// jsonObjectArray.sort((t1, t2) => (t1.id < t2.id ? -1 : 1));
+								// console.log(jsonObjectArray);
+								this.page = frominat.page;
+								this.per_page = frominat.per_page;
+								this.results = frominat.results;
+								this.total_results = frominat.total_results;
+								this.answer = "loaded. ";
+							} catch (error) {
+								this.answer = "Error! Could not reach the API. " + error;
+							} finally {
+								this.loading = false;
+							}
+						},
+					},
+					// truncate(v) {
+					//   const newline = v.indexOf('\n')
+					//   return newline > 0 ? v.slice(0, newline) : v
+					// },
+					// formatDate(v) {
+					//   return v.replace(/T|Z/g, ' ')
+					// }
+					// },
 				}).mount("#app");
 			</script>
-
+			asc or desc
 			<div id="app">
-				<template v-for="branch in branches">
-					<input type="radio" :id="branch" :value="branch" name="branch" v-model="currentBranch" />
-					<label :for="branch">{{ branch }}</label>
-				</template>
-				<p>vuejs/vue@{{ currentBranch }}</p>
+				<!--  -->
+				<div class="grid-x grid-margin-x">
+					<div class="cell auto">
+						<!-- do ordering not as a fetch -->
+						<select v-model="order_by">
+							<option disabled value="">Order by</option>
+							<option value="species_guess">English Name a/z</option>
+							<option value="id">(not searchable) Latin Name a/z</option>
+							<option value="created_at">Date oldest/newest</option>
+						</select>
+						<select v-model="order">
+							<option disabled value="">Order</option>
+							<option value="asc">asc</option>
+							<option value="desc">desc</option>
+						</select>
+					</div>
+					<div class="cell auto">
+						<!-- get project data? -->
+						<select id="dino-select">
+							<option>All Species (not sure how to generate)</option>
+							<optgroup label="Kingdom">
+								<option>Animalia</option>
+								<option>Plantae</option>
+								<option>Fungi</option>
+								<option>Protista</option>
+								<option>Archaea/Archaebacteria</option>
+								<option>Bacteria or Eubacteria</option>
+							</optgroup>
+							<optgroup label="Family">
+								<option>abcd...</option>
+								<option>abcd...</option>
+								<option>abcd...</option>
+							</optgroup>
+						</select>
+					</div>
+					<div class="cell auto">
+						<!-- get project data? -->
+						<select id="dino-select">
+							<option>All Locations (only 1)</option>
+							<optgroup label="Deadmans Head">
+								<option>abcd...</option>
+								<option>abcd...</option>
+								<option>abcd...</option>
+							</optgroup>
+							<optgroup label="Another Site">
+								<option>abcd...</option>
+								<option>abcd...</option>
+								<option>abcd...</option>
+							</optgroup>
+						</select>
+					</div>
+					<div class="cell auto">
+						<!-- post api filter? -->
+						<select>
+							<option>All Threat Levels</option>
+							<option>(not searchable) Endangered</option>
+							<option>Threatened</option>
+							<option>(not searchable) Vulneratble</option>
+							<option>(not searchable) Extinct</option>
+						</select>
+					</div>
+					<div class="cell auto">
+						<!-- not asked for -->
+						<select>
+							<option>All Establishment Means</option>
+							<option>Native</option>
+							<option>Introduced</option>
+						</select>
+					</div>
+				</div>
+				<!--  -->
+				<!-- <template v-for="branch in branches">
+					<input type="radio" :id="branch" :value="branch" name="branch" v-model="total_results" />
+					<label :for="branch">{{ page }}</label>
+				</template> -->
+				<div>Selected: {{ answer }}</div>
+				<p>total_results: {{ total_results }}</p>
 				<ul>
-					<li v-for="{ html_url, sha, author, commit } in commits">
-						<a :href="html_url" target="_blank" class="commit">{{ sha.slice(0, 7) }}</a>
-						- <span class="message">{{ truncate(commit.message) }}</span><br />
-						by
-						<span class="author">
-							<a :href="author.html_url" target="_blank">{{ commit.author.name }}</a>
-						</span>
-						at <span class="date">{{ formatDate(commit.author.date) }}</span>
+					<li v-for="{ captive, taxon, uri, place_guess, observed_on_string, identifications, photos } in results">
+						<a :href="uri">English name: {{ taxon.preferred_common_name }}</a><br />
+						Latin name: {{ taxon.name }}<br />
+						Family name: {{ taxon.name }}<br />
+						Location: {{ place_guess }}<br />
+						Date: {{ observed_on_string }}<br />
+						<!-- ({{ identifications.taxon.preferred_common_name }})<br /> -->
+						({{ photos[0].url }})<br />
+						{{ captive }}
 					</li>
 				</ul>
 			</div>

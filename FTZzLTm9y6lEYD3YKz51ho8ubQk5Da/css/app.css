@@ -5,7 +5,7 @@ img.logo {
 	max-width: 50px;
 }
 img {
-	max-height: 75vh;
+	/* max-height: 75vh; */
 }
 figure.video,
 video {
@@ -18,4 +18,19 @@ footer {
 code {
 	font-size: 2.5rem;
 	background-color: greenyellow;
+}
+img.rounded {
+	border-radius: 999px;
+}
+img.border,
+img.rounded {
+	border: double 5px #ddd;
+}
+header,
+footer {
+	background-color: #c8effe;
+}
+.grid-container {
+	padding-top: 2rem;
+	padding-bottom: 2rem;
 }
