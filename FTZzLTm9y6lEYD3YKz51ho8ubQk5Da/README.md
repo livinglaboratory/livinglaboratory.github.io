@@ -1,1 +1,0 @@
-# livinglaboratory.github.io
