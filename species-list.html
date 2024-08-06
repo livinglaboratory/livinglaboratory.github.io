@@ -57,65 +57,65 @@
 						<select onchange="orderby(this.value)">
 							<option disabled value="">Order by</option>
 							<option value="species_guess">English Name a/z</option>
-							<option value="id">(not searchable) Latin Name a/z</option>
+							<option value="id">Latin Name a/z</option>
 							<option value="created_at">Date oldest/newest</option>
 						</select>
 					</div>
-					<div class="cell auto">
-						<!-- get project data? -->
-						<select onchange="fillterby(this.value)">
+					<!--<div class="cell auto">
+						 not asked for
+						<select onchange="filterby(this.value)">
 							<option value="">All Species</option>
-							<optgroup label="Kingdom">
-								<option value="">Animalia</option>
-								<option value="">Plantae</option>
-								<option value="">Fungi</option>
-								<option value="">Protista</option>
-								<option value="">Archaea/Archaebacteria</option>
-								<option value="">Bacteria/Eubacteria</option>
-							</optgroup>
-							<optgroup label="Family (not sure how to generate)">
-								<option value="">abcd...</option>
-								<option value="">abcd...</option>
-								<option value="">abcd...</option>
-							</optgroup>
+								<option value="Animalia">Animalia</option>
+								<option value="Plantae">Plantae</option>
+								<option value="Fungi">Fungi</option>
+								<option value="Protista">Protista</option>
+								<option value="Archaea/Archaebacteria">Archaea/Archaebacteria</option>
+								<option value="Bacteria/Eubacteria">Bacteria/Eubacteria</option>
+
+						</select>
+					</div>-->
+					<div class="cell auto">
+						<!--  -->
+						<select onchange="filterby(this.value)" id="families">
+							<option value="">All Families</option>
 						</select>
 					</div>
 					<div class="cell auto">
-						<!-- get project data? -->
-						<select onchange="fillterby(this.value)">
-							<option value="">All Locations (???)</option>
-							<optgroup label="Deadmans Head">
-								<option value="">abcd...</option>
-								<option value="">abcd...</option>
-								<option value="">abcd...</option>
-							</optgroup>
-							<optgroup label="Another Site">
-								<option value="">abcd...</option>
-								<option value="">abcd...</option>
-								<option value="">abcd...</option>
-							</optgroup>
+						<!-- no idea what he wants here -->
+						<select onchange="filterby(this.value)" id="locations">
+							<option value="">All Locations</option>
 						</select>
 					</div>
 					<div class="cell auto">
 						<!-- post api filter? -->
-						<select onchange="fillterby(this.value)">
+						<!-- some of these are list.js and some are api fetch -->
+						<select onchange="filterby(this.value)">
 							<option value="">All Threat Levels</option>
-							<option value="">Endangered</option>
-							<option value="">Threatened</option>
-							<option value="">Vulneratble</option>
-							<option value="">Extinct</option>
+							<!-- <option value="">Endangered</option> -->
+							<option value="Threatened">Threatened</option>
+							<!-- <option value="Vulneratble">Vulneratble</option> -->
+							<option value="Extinct">Extinct</option>
 						</select>
 					</div>
-					<div class="cell auto">
-						<!-- not asked for -->
-						<select onchange="fillterby(this.value)">
+					<!--<div class="cell auto">
+						 not asked for
+						<select onchange="filterby(this.value)">
 							<option value="">All Establishment Means</option>
-							<option value="">Native</option>
-							<option value="">Introduced</option>
+							<option value="Native">Native</option>
+							<option value="Introduced">Introduced</option>
 						</select>
-					</div>
+					</div>-->
 				</div>
+				<style>
+					.list li {
+						border: dotted 1px pink;
+						margin: 6px;
+						float: left;
+						width: 45%;
+					}
+				</style>
 				<ul class="list"></ul>
+				<hr style="clear: both" />
 			</div>
 			<script src="https://cdnjs.cloudflare.com/ajax/libs/list.js/2.3.1/list.min.js"></script>
 
@@ -126,50 +126,102 @@
 				}
 				function filterby(v) {
 					console.log(v);
-					observationsList.sort("name", { order: "desc" }); // Sorts the list in abc-order based on names
+					// vv = v;
+					observationsList.filter(function (item) {
+						// console.log(v);
+						if (item.values().kingdom == v) {
+							return true;
+						} else {
+							return false;
+						}
+					});
+					// sort("name", { order: "desc" }); // Sorts the list in abc-order based on names
 				}
 
 				var options = {
-					valueNames: ["name", "latin", "family", "location", "date", "captive", { data: ["id"] }, { name: "link", attr: "href" }, { name: "image", attr: "src" }],
+					valueNames: ["name", "latin", "kingdom", "family", "location", "date", "threat", "establishment", { data: ["id"] }, { name: "link", attr: "href" }, { name: "image", attr: "src" }],
 					item: `<li data-id="#">
-							<a href="uri" class="link name">Name</a>
-							<span class="latin">Latin name</span>
-							<span class="family">Family name</span>
-							<span class="location">Location</span>
-							<span class="date">Date</span>
-							<span class="captive">captive</span>
+							name: <a href="uri" class="link name">Name</a><br>
+							latin: <span class="latin">Latin name</span><br>
+							kingdom: <span class="kingdom">-</span><br>
+							family: <span class="family">Family name</span><br>
+							location: <span class="location">Location</span><br>
+							date: <span class="date">Date</span><br>
+							threat: <span class="threat">-</span><br>
+							establishment: <span class="establishment">-</span><br>
 							<img class="image" src="uri" />
 							</li>`,
 				};
 
 				var observationsList = new List("observations", options);
 
+				// 200 is max, so we need to do this multiple times...
+
 				fetch("https://api.inaturalist.org/v1/observations?project_id=152030&per_page=3&order=desc&order_by=created_at")
 					.then((response) => response.json())
 					.then((json) => {
 						const inaturalist_json = json;
-						console.log(inaturalist_json);
+						// console.log(inaturalist_json);
+
+						let families = [];
+						let locations = [];
 
 						for (var result of inaturalist_json.results) {
-							console.log(result);
+							// console.log(result.identifications);
+							let k = "";
+							let f = "";
+							for (var a of result.identifications[0].taxon.ancestors) {
+								// console.log(a);
+								if (a.rank == "kingdom") {
+									k = a.name;
+									// break;
+								}
+								if (a.rank == "family") {
+									f = a.name;
+									if (!families.includes(f)) {
+										families.push(f);
+									}
+								}
+							}
+							console.log(f);
+							console.log(k);
+							if (!locations.includes(result.place_guess)) {
+								locations.push(result.place_guess);
+							}
+							// console.log(result.identifications[0].taxon.ancestors);
+							// console.log(result.identifications[0].taxon.ancestors);
 							observationsList.add({
 								name: result.taxon.preferred_common_name,
 								latin: result.taxon.name,
-								kingdom: result.taxon.name,
-								family: result.taxon.name,
-								// threat
-								extinct: result.taxon.extinct,
+								kingdom: k,
+								family: f,
+								// threat taxon.conservation_status &cs={...}
+								// endagered: result.?, /null
+								// vulernable: result.?, /null
 								threatened: result.taxon.threatened,
+								extinct: result.taxon.extinct, // this is going to be /null
 								// establishment
-								captive: result.captive,
+								native: result.taxon.native,
 								introduced: result.taxon.introduced,
 								//
 								link: result.uri,
 								location: result.place_guess,
-								date: result.resulterved_on_string,
+								date: result.observed_on_string,
 								image: result.photos[0].url,
 								id: result.id,
 							});
+						}
+						families.sort();
+						console.log(families);
+						daySelect = document.getElementById("families");
+						for (var fo of families) {
+							daySelect.options[daySelect.options.length] = new Option(fo, fo);
+						}
+						locations.sort();
+						console.log(locations);
+						daySelect2 = document.getElementById("locations");
+						for (var lo of locations) {
+							daySelect2.options[daySelect2.options.length] = new Option(lo, lo);
 						}
 					});
 			</script>
