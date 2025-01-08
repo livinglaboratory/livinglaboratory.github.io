@@ -5,8 +5,8 @@
 		<meta http-equiv="x-ua-compatible" content="ie=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>LivingLaboratory.org</title>
-		<link rel="stylesheet" href="css/foundation.css" />
-		<link rel="stylesheet" href="css/app.css" />
+		<link rel="stylesheet" href="/css/foundation.css" />
+		<link rel="stylesheet" href="/css/app.css" />
 	</head>
 	<style>
 		.gimmie-some-space {
@@ -20,14 +20,17 @@
 			background-position: center;
 			background-repeat: no-repeat;
 			background-size: cover;
-			min-height: 75vh;
+			min-height: 100vh;
 		}
 		#hero h1 {
-			background-color: rgba(0, 0, 0, 0.85);
+			background-color: rgba(0, 0, 0, 0.75);
 			color: #fff;
 			padding: 18px;
-			font-size: 2.4rem;
-			letter-spacing: 8px;
+			font-size: 2rem;
+			line-height: 4rem;
+			letter-spacing: 2px;
+			text-transform: uppercase;
+			font-weight: bold;
 		}
 		.decorated {
 			overflow: hidden;
@@ -57,28 +60,22 @@
 		<header class="grid-x grid-padding-x grid-padding-y align-middle">
 			<div class="large-4 medium-4 small-4 cell">
 				<div>
-					<a href="/" rel="home" class="h4"><img src="media/logo.png" alt="" class="logo" /> LivingLaboratory.org</a>
+					<a href="/" rel="home" class="h4"><img src="/media/logo.png" alt="" class="logo" /> LivingLaboratory.org</a>
 				</div>
 			</div>
 			<div class="large-8 medium-8 small-8 cell">
 				<div>
 					<ul class="dropdown menu align-right" data-dropdown-menu>
-						<li><a href="species.html">Species</a></li>
-						<li>
-							<a href="reports.html">Reports</a>
-							<ul class="menu align-right">
-								<li><a href="possible-approaches.html">Creating a Living Laboratory</a></li>
-								<li><a href="intertidal-zones.html">Intertidal Zones</a></li>
-							</ul>
-						</li>
-						<li><a href="contact.html">Contact</a></li>
+						<li><a href="/species.html">Species</a></li>
+						<li><a href="/reports">Reports</a></li>
+						<li><a href="/contact.html">Contact</a></li>
 					</ul>
 				</div>
 			</div>
 		</header>
 		<!--  -->
 		<div class="grid-x grid-padding-x grid-padding-y align-center align-middle text-center" id="hero">
-			<div class="large-10 cell">
+			<div class="large-8 medium-10 cell">
 				<h1>Creating a Living Laboratory on Deadmans Head to identify and research species and how they respond to climate change.</h1>
 			</div>
 		</div>
@@ -91,7 +88,7 @@
 						<h2 class="decorated"><span>Mission</span></h2>
 						<p class="lead">At Living Laboratory, our mission is to illuminate the profound significance of the Bay of Fundy by examining its ecosystem through a lens that encompasses the diverse array of species inhabiting and interacting within this vital marine environment. We are dedicated to fostering a deep understanding of the Bay's ecological complexities, advocating for all species preservation.</p>
 
-						<p><img src="media/site.png" class="float-right border" style="max-width: 400px; margin-left: 2rem" /></p>
+						<p><img src="/media/site.png" class="float-right border" style="max-width: 400px; margin-left: 2rem" /></p>
 
 						<p>In the Anthropocene era, our growing impact on the environment raises crucial questions about the fate of countless species. As we navigate this era of human influence, it's imperative to understand how these species are responding and adapting to the challenges posed by our actions. This is the focal point of our mission: to identify, study, and provide assistance to the diverse array of species affected by our presence.</p>
 
@@ -104,10 +101,8 @@
 			<!--  -->
 			<div class="grid-x grid-padding-x grid-padding-y gimmie-some-space">
 				<div class="large-12 medium-12 small-12 cell">
-					<div>
-						<figure class="video">
-							<video controls src="possible-approaches/point.mp4"></video>
-						</figure>
+					<div class="video-container">
+						<iframe width="560" height="315" src="https://www.youtube.com/watch?v=kga8RN0aPcc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 					</div>
 				</div>
 			</div>
@@ -118,7 +113,7 @@
 					<div class="large-offset-1 large-3 medium-4 small-4 cell">
 						<div>
 							<p>
-								<a href="species.html"><img src="media/students2.jpg" class="rounded" /></a>
+								<a href="species.html"><img src="/media/students2.jpg" class="rounded" /></a>
 							</p>
 						</div>
 					</div>
@@ -137,7 +132,7 @@
 					<div class="large-offset-1 large-3 medium-4 small-4 cell">
 						<div>
 							<p>
-								<a href="intertidal-zones.html"><img src="media/DJI_0136.jpg" class="rounded" /></a>
+								<a href="/reports/intertidal-zones/"><img src="/media/DJI_0136.jpg" class="rounded" /></a>
 							</p>
 						</div>
 					</div>
@@ -156,7 +151,7 @@
 					<div class="large-offset-1 large-3 medium-4 small-4 cell">
 						<div>
 							<p>
-								<a href="possible-approaches.html"><img src="media/drone.jpg" class="rounded" /></a>
+								<a href="/reports/possible-approaches/"><img src="/media/drone.jpg" class="rounded" /></a>
 							</p>
 						</div>
 					</div>
@@ -175,7 +170,7 @@
 					<div class="large-offset-1 large-3 medium-4 small-4 cell">
 						<div>
 							<p>
-								<a href="contact.html"><img src="media/map-points.jpg" class="rounded" /></a>
+								<a href="contact.html"><img src="/media/map-points.jpg" class="rounded" /></a>
 							</p>
 						</div>
 					</div>
@@ -291,7 +286,7 @@
 		<footer class="grid-x grid-padding-x grid-padding-y align-middle" id="contact">
 			<div class="large-4 medium-4 small-4 cell">
 				<div>
-					<a href="/" rel="home" class="h4"><img src="media/logo.png" alt="" class="logo" /> LivingLaboratory.org</a>
+					<a href="/" rel="home" class="h4"><img src="/media/logo.png" alt="" class="logo" /> LivingLaboratory.org</a>
 				</div>
 			</div>
 			<div class="large-8 medium-8 small-8 cell">
@@ -299,7 +294,7 @@
 					<ul class="menu align-right">
 						<ul class="dropdown menu align-right" data-dropdown-menu>
 							<li><a href="species.html">Species</a></li>
-							<li><a href="reports.html">Reports</a></li>
+							<li><a href="/reports">Reports</a></li>
 							<li><a href="contact.html">Contact</a></li>
 							<li><a href="legal.html">Legal Stuff</a></li>
 						</ul>
@@ -308,10 +303,10 @@
 			</div>
 		</footer>
 
-		<script src="js/vendor/jquery.js"></script>
-		<script src="js/vendor/what-input.js"></script>
-		<script src="js/vendor/foundation.js"></script>
-		<script src="js/app.js"></script>
+		<script src="/js/vendor/jquery.js"></script>
+		<script src="/js/vendor/what-input.js"></script>
+		<script src="/js/vendor/foundation.js"></script>
+		<script src="/js/app.js"></script>
 
 		<!--https://gtranslate.io/website-translator-widget-->
 		<div class="gtranslate_wrapper"></div>
